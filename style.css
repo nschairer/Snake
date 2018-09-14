@@ -1,0 +1,27 @@
+#food {
+	background-color: black;
+	top: 100px;
+	left: 100px;
+	position: absolute;
+}
+
+#map {
+	background-color: transparent;
+	top: 100px;
+	left: 100px;
+	position: absolute;
+}
+
+#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	text-align: center;
+}
+
+#title {
+	margin: auto;
+	vertical-align: middle;
+}
