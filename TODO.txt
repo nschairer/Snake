@@ -1,6 +1,4 @@
-- Highscore in local storage
-- Space between snake blocks
 - levels somehow
-- snake upgrades
+- snake upgrades -- different shapes maybe
 - powerups
 - webpage design

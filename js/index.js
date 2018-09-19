@@ -6,11 +6,13 @@ const foodCtx = canvasFood.getContext('2d');
 
 const scoreLbl = document.getElementById('score');
 const highscorelbl = document.getElementById('highscore');
+
 var score = 0;
 var highscore;
 
 const snake = [];
 var direction = 1;
+var lastColor = 0;
 var f;
 var i;
 
@@ -82,8 +84,6 @@ function color(score) {
 	}
 }
 
-
-
 function checkCollision() {
 	for(let x = 1; x < snake.length; x++) {
 		if(snake[0]['x'] === snake[x]['x'] && snake[0]['y'] === snake[x]['y']) {
@@ -99,9 +99,14 @@ function checkCollision() {
 		clearInterval(i);
 	}
 	if(f.x === snake[0]['x'] && f.y === snake[0]['y']) {
-		score++;
+		score++;		
+		if(f.color === "purple") {
+			lastColor = 1;
+			score++;
+		}
+
 		scoreLbl.innerHTML = 'Score: ' + score;
-		
+
 		if(score > highscore) {
 			highscorelbl.innerHTML = 'Highscore: ' + score;
 			localStorage.setItem('highscore', score);
@@ -116,6 +121,23 @@ function checkCollision() {
 }
 
 function changeDirection(input) {
+	var component = directionSwitch();
+	if(!input){
+		snake.pop();
+		snake.unshift(component);
+	} else {
+		if(lastColor === 0) {
+			snake.unshift(component);
+		} else {
+			snake.unshift(component);
+			component = directionSwitch();
+			snake.unshift(component);
+			lastColor = 0;
+		}
+	};
+}
+
+function directionSwitch() {
 	var component;
 	switch(direction) {
 			case -1:
@@ -137,13 +159,10 @@ function changeDirection(input) {
 			default:
 				break;
 	}
-	if(!input){
-		snake.pop();
-		snake.unshift(component);
-	} else {
-		snake.unshift(component);
-	};
+	return component;
 }
+
+
 
 function food() {
 	this.width = 18;
@@ -153,7 +172,15 @@ function food() {
 		this.y = Math.ceil(((Math.random() * 480) / 20)) * 20;
 
 		ctx = foodCtx;
-		ctx.fillStyle = "yellow";
+		random = Math.floor(Math.random() * 10);
+		console.log(random);
+		if(random != 4 && random != 7) {
+			ctx.fillStyle = "yellow";
+			this.color = "yellow";
+		} else {
+			ctx.fillStyle = "purple";
+			this.color = "purple";
+		}
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
 }
