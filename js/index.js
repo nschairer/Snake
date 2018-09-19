@@ -61,10 +61,27 @@ function updateGameArea() {
 	changeDirection(checkCollision());
 	for(let b of snake) {
 		var ctx = mapCtx;
-		ctx.fillStyle = "orange";
-		ctx.fillRect(b['x'], b['y'], 20, 20);
+		ctx.fillStyle = color(score);
+		ctx.fillRect(b['x'], b['y'], 18, 18);
 	}
 }
+
+function color(score) {
+	if(score >= 100) {
+		return "gold";
+	} else if(score >= 75) {
+		return "silver";
+	} else if(score >= 50) {
+		return "green";
+	} else if(score >= 25) {
+		return "red"
+	} else if(score >= 10) {
+		return "blue"
+	} else {
+		return "orange"
+	}
+}
+
 
 
 function checkCollision() {
@@ -129,8 +146,8 @@ function changeDirection(input) {
 }
 
 function food() {
-	this.width = 20;
-	this.height = 20;
+	this.width = 18;
+	this.height = 18;
 	this.create = function() {
 		this.x = Math.ceil(((Math.random() * 480) / 20)) * 20;
 		this.y = Math.ceil(((Math.random() * 480) / 20)) * 20;
