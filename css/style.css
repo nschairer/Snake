@@ -31,7 +31,15 @@ canvas {
 #header {
 	grid-row-start: 1;
 	text-align: center;
+	position: relative;
 }
+
+#highscore {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 #gamearea {
 	grid-row-start: 2;
 	height: 100%;

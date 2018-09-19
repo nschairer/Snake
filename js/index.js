@@ -5,7 +5,9 @@ const canvasFood = document.getElementById('food');
 const foodCtx = canvasFood.getContext('2d');
 
 const scoreLbl = document.getElementById('score');
+const highscorelbl = document.getElementById('highscore');
 var score = 0;
+var highscore;
 
 const snake = [];
 var direction = 1;
@@ -45,6 +47,9 @@ function checkkey(e) {
 }
 
 window.onload  = function() {
+	highscore = localStorage.getItem('highscore') || 0;
+	highscorelbl.innerHTML = `Highscore: ` + highscore;
+
 	snake.push({'x': 20, 'y': 20});
 	f = new food();
 	f.create();
@@ -63,7 +68,6 @@ function updateGameArea() {
 
 
 function checkCollision() {
-
 	for(let x = 1; x < snake.length; x++) {
 		if(snake[0]['x'] === snake[x]['x'] && snake[0]['y'] === snake[x]['y']) {
 			mapCtx.fillStyle = 'white';
@@ -79,7 +83,13 @@ function checkCollision() {
 	}
 	if(f.x === snake[0]['x'] && f.y === snake[0]['y']) {
 		score++;
-		scoreLbl.innerHTML = score;
+		scoreLbl.innerHTML = 'Score: ' + score;
+		
+		if(score > highscore) {
+			highscorelbl.innerHTML = 'Highscore: ' + score;
+			localStorage.setItem('highscore', score);
+		}
+		
 		foodCtx.clearRect(0,0,500,500);
 		f.create();
 		return true;
@@ -124,7 +134,7 @@ function food() {
 	this.create = function() {
 		this.x = Math.ceil(((Math.random() * 480) / 20)) * 20;
 		this.y = Math.ceil(((Math.random() * 480) / 20)) * 20;
-		console.log(this.x, this.y);
+
 		ctx = foodCtx;
 		ctx.fillStyle = "yellow";
 		ctx.fillRect(this.x, this.y, this.width, this.height);
