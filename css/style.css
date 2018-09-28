@@ -2,16 +2,35 @@ body {
 	background-color: #cad1cb;
 }
 canvas {
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
-#container {
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: 15% 75%;
-	width: 100vw;
-	height: 100vh;
-	grid-gap: 0px;
+.nav {
+	display: block;
+	width: 100%;
+}
+
+.nav img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 25%;
+}
+
+.info-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	width: 100%;
+	height: 75px;
+}
+
+.info-bar h2 {
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+	display: inline-block;
+	margin: 10px;
+	font-size: 30px;
 }
 
 #food {
@@ -30,18 +49,6 @@ canvas {
 	right: 25%;
 }
 
-#header {
-	grid-row-start: 1;
-	text-align: center;
-	position: relative;
-}
-
-#highscore {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
 #gamearea {
 	grid-row-start: 2;
 	height: 100%;
@@ -49,7 +56,3 @@ canvas {
 	position: relative;
 }
 
-#title {
-	margin: auto;
-	vertical-align: middle;
-}

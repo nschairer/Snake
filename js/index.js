@@ -163,18 +163,15 @@ function directionSwitch() {
 }
 
 
-
 function food() {
 	this.width = 18;
 	this.height = 18;
 	this.create = function() {
 		this.x = Math.ceil(((Math.random() * 480) / 20)) * 20;
 		this.y = Math.ceil(((Math.random() * 480) / 20)) * 20;
-
 		ctx = foodCtx;
 		random = Math.floor(Math.random() * 10);
-		console.log(random);
-		if(random != 4 && random != 7) {
+		if(random != 7) {
 			ctx.fillStyle = "yellow";
 			this.color = "yellow";
 		} else {
@@ -184,5 +181,3 @@ function food() {
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
 }
-
-
