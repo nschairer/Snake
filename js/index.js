@@ -1,9 +1,6 @@
 const canvasMap = document.getElementById('map');
 const mapCtx = canvasMap.getContext('2d');
 
-const canvasFood = document.getElementById('food');
-const foodCtx = canvasFood.getContext('2d');
-
 const scoreLbl = document.getElementById('score');
 const highscorelbl = document.getElementById('highscore');
 
@@ -59,7 +56,6 @@ window.onload  = function() {
 }
 
 function updateGameArea() {
-	mapCtx.clearRect(0,0,500,500);
 	changeDirection(checkCollision());
 	for(let b of snake) {
 		var ctx = mapCtx;
@@ -111,8 +107,6 @@ function checkCollision() {
 			highscorelbl.innerHTML = 'Highscore: ' + score;
 			localStorage.setItem('highscore', score);
 		}
-		
-		foodCtx.clearRect(0,0,500,500);
 		f.create();
 		return true;
 	} else {
@@ -123,7 +117,8 @@ function checkCollision() {
 function changeDirection(input) {
 	var component = directionSwitch();
 	if(!input){
-		snake.pop();
+		var p = snake.pop();
+		mapCtx.clearRect(p['x'], p['y'], 18, 18);
 		snake.unshift(component);
 	} else {
 		if(lastColor === 0) {
@@ -169,7 +164,7 @@ function food() {
 	this.create = function() {
 		this.x = Math.ceil(((Math.random() * 480) / 20)) * 20;
 		this.y = Math.ceil(((Math.random() * 480) / 20)) * 20;
-		ctx = foodCtx;
+		ctx = mapCtx;
 		random = Math.floor(Math.random() * 10);
 		if(random != 7) {
 			ctx.fillStyle = "yellow";

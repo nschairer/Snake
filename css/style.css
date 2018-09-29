@@ -33,26 +33,18 @@ canvas {
 	font-size: 30px;
 }
 
-#food {
-	background-color: black;
-	position: absolute;
-	top: 0;
-	left: 25%;
-	right: 25%;
-}
-
-#map {
-	background-color: transparent;
-	position: absolute;
-	top: 0;
-	left: 25%;
-	right: 25%;
-}
-
-#gamearea {
-	grid-row-start: 2;
-	height: 100%;
+.gameArea {
 	width: 100%;
-	position: relative;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
 }
+
+.map {
+	background-color: black;
+	position: relative;
+	top: 0;
+}
+
 

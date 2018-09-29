@@ -2,3 +2,5 @@
 - snake upgrades -- different shapes maybe
 - powerups
 - webpage design
+- Buttons
+- Leaderboard
